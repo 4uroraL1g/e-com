@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 //Routes
 const categoryRoutes = require('./routes/categories');
-
+ 
 app.use('/api/category', categoryRoutes);
 // Serve static files from the React frontend app
 
@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 .then(() => {
   console.log('Connected to MongoDB');
   const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
+    app.listen(PORT, () => { 
     console.log(`Server is running on port: ${PORT}`);
 });
 })
