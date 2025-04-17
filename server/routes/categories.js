@@ -29,14 +29,15 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const categoryId = await Category.findById(req.params.id);
-        if (!categoryId) {
+        const categoryId = req.params.id;
+        const category = await Category.findById(categoryId);
+
+        if (!category) {
             console.error('Category not found');
             return res.status(404).json({ success: false, message: 'Category not found' });
         }
 
-        // Send the found category as a response
-        res.status(200).json({ success: true, category: categoryId });
+        res.status(200).json({ success: true, category });
     } catch (error) {
         console.error('Error fetching category by ID:', error);
         res.status(500).json({ success: false, message: 'Error fetching category' });
