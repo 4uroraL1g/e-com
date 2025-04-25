@@ -130,3 +130,94 @@ footer {
     color: white;
     margin-top: 20px;
 }
+
+/* Thanh category */
+.category-nav {
+    background-color: #ff5722;
+    padding: 10px 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+}
+
+.category-list {
+    display: flex;
+    gap: 4px;
+    /* Remove horizontal scroll */
+    overflow-x: visible;
+    padding-bottom: 5px;
+    max-width: 100%;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.category-icon {
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.category-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 8px 15px 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: bold;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.category-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Submenu styles */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 5px 0;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.submenu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.submenu-list li {
+    padding: 8px 15px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.submenu-list li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Show submenu on hover */
+.category-btn:hover .submenu {
+    display: block;
+}
+
+/* Tùy chỉnh thanh scroll */
+.category-list::-webkit-scrollbar {
+    height: 4px;
+}
+.category-list::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+}
