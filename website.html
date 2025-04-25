@@ -1,39 +1,81 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Shop Clone</title>
-    <link rel="stylesheet" href="website.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Shop Clone</title>
+<link rel="stylesheet" href="website.css">
 </head>
 <body>
-    <header>
-        <div class="logo">E-Shop</div>
-        <input type="text" placeholder="Search product..." id="searchBox">
-        <button onclick="searchProduct()">Search</button>
+<header>
+<div class="logo">E-Shop</div>
+<input type="text" placeholder="Search product..." id="searchBox">
+<button onclick="searchProduct()">Search</button>
 
-        <div class="header-right">
-            <div class="cart" onclick="viewCart()">🛒 <span id="cartCount">0</span></div>
-            <div class="user-menu">
-                <div class="user-icon">👤</div>
-                <div class="dropdown">
-                    <a href="#">My account</a>
-                    <a href="#">My order</a>
-                    <a href="#">Setting</a>
-                    <a href="#">Sign out</a>
-                </div>
-            </div>
-        </div>
-    </header>
+<div class="header-right">
+<div class="cart" onclick="viewCart()">🛒 <span id="cartCount">0</span></div>
+<div class="user-menu">
+<div class="user-icon">👤</div>
+<div class="dropdown">
+<a href="#">My account</a>
+<a href="#">My order</a>
+<a href="#">Setting</a>
+<a href="#">Sign out</a>
+</div>
+</div>
+</div>
+</header>
 
-    <main id="categories">
-        <!-- Danh mục sản phẩm sẽ được thêm vào đây -->
-    </main>
+<div class="category-nav">
+<div class="category-list">
+<button class="category-btn" data-category-name="Phone and Laptop"><span class="category-icon">💻</span>Phone & Laptop
+    <div class="submenu"></div>
+</button>
+<button class="category-btn" data-category-name="Accessories & Audio"><span class="category-icon">🎧</span>Accessories
+    <div class="submenu"></div>
+</button>
+<button class="category-btn" data-category-name="Household appliances"><span class="category-icon">🏠</span>Home Appliances
+    <div class="submenu"></div>
+</button>
+<button class="category-btn" data-category-name="Gaming"><span class="category-icon">🎮</span>Gaming
+    <div class="submenu"></div>
+</button>
+<button class="category-btn" data-category-name="Books"><span class="category-icon">📚</span>Books
+    <div class="submenu"></div>
+</button>
+<button class="category-btn" data-category-name="Fitness"><span class="category-icon">🏋️‍♂️</span>Fitness
+    <div class="submenu"></div>
+</button>
+</div>
+</div>
+<section id="popular-products" class="category">
+    <h2>Popular Products</h2>
+    <div class="products" id="popularProductsContainer">
+        <!-- Popular products will be loaded here -->
+    </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 E-Shop. All rights reserved.</p>
-    </footer>
+<section id="new-products" class="category">
+    <h2>New Products</h2>
+    <div class="products" id="newProductsContainer">
+        <!-- New products will be loaded here -->
+    </div>
+</section>
 
-    <script src="website.js"></script>
+<section id="featured-products" class="category">
+    <h2>Featured Products</h2>
+    <div class="products" id="featuredProductsContainer">
+        <!-- Featured products will be loaded here -->
+    </div>
+</section>
+
+<main id="categories">
+</main>
+
+<footer>
+<p>&copy; 2025 E-Shop. All rights reserved.</p>
+</footer>
+
+<script src="website.js"></script>
 </body>
 </html>
