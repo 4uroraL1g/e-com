@@ -15,14 +15,29 @@ header {
     flex-wrap: wrap;
 }
 
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-grow: 1;
+    max-width: 600px;
+    margin: 0 20px;
+}
+
+.search-container input#searchBox {
+    flex-grow: 1;
+    width: auto;
+}
+
 .logo {
     font-size: 24px;
     font-weight: bold;
 }
 
-input {
+input#searchBox {
     padding: 5px;
-    width: 300px;
+    width: 500px;
 }
 
 button {
@@ -53,6 +68,7 @@ button {
 }
 
 .dropdown {
+    /* Hide dropdown by default */
     display: none;
     position: absolute;
     top: 30px;
@@ -63,6 +79,11 @@ button {
     overflow: hidden;
     z-index: 999;
     min-width: 180px;
+}
+
+/* Show dropdown when .show class is added */
+.dropdown.show {
+    display: block;
 }
 
 .dropdown a {
