@@ -62,6 +62,14 @@ const categories = [
             { id: 24, name: "Treadmill", price: 15000000, img: "https://via.placeholder.com/100" },
             { id: 29, name: "neoprene dumbbell", price: 1300000, img: "https://via.placeholder.com/100" }
         ]
+    },
+    {
+        name: "Furniture",
+        products: [
+            { id: 30, name: "Sofa", price: 5000000, img: "https://via.placeholder.com/100", url: "sofa.html" },
+            { id: 31, name: "Dining Table", price: 7000000, img: "https://via.placeholder.com/100", url: "dining-table.html" },
+            { id: 32, name: "Chair", price: 1500000, img: "https://via.placeholder.com/100", url: "chair.html" }
+        ]
     }
 ];
 
@@ -90,14 +98,41 @@ function addToCart(productId) {
 }
 
 function searchProduct() {
-    let query = document.getElementById("searchBox").value.toLowerCase();
+    let query = document.getElementById("searchBox").value.toLowerCase().trim();
     let categoryContainer = document.getElementById("categories");
     categoryContainer.innerHTML = "";
+
+    console.log("Search query:", query);
+
+    if (!query) {
+        // If search box is empty, show all categories and products
+        categories.forEach(category => {
+            let categoryHTML = `
+                <div class="category">
+                    <h2>${category.name}</h2>
+                    <div class="products">
+                        ${category.products.map(product => `
+                            <div class="product">
+                                <img src="${product.img}" alt="${product.name}">
+                                <h3>${product.name}</h3>
+                                <p>${product.price.toLocaleString()} VND</p>
+                                <button class="add-to-cart" onclick="addToCart(${product.id})">Add to cart</button>
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+            categoryContainer.innerHTML += categoryHTML;
+        });
+        return;
+    }
 
     let filteredCategories = categories.map(category => ({
         name: category.name,
         products: category.products.filter(p => p.name.toLowerCase().includes(query))
     })).filter(category => category.products.length > 0);
+
+    console.log("Filtered categories:", filteredCategories);
 
     if (filteredCategories.length === 0) {
         categoryContainer.innerHTML = "<p style='text-align:center;'>No products found</p>";
@@ -295,4 +330,41 @@ window.onload = () => {
             submenu.appendChild(submenuList);
         }
     });
+
+    // Dropdown hover delay logic
+    let dropdownTimer = null;
+
+    const userMenu = document.querySelector('.user-menu');
+    const dropdown = document.querySelector('.user-menu .dropdown');
+
+    if (userMenu && dropdown) {
+        // Ensure click on user icon toggles dropdown visibility
+        const userIcon = userMenu.querySelector('.user-icon');
+        if (userIcon) {
+            userIcon.removeEventListener('click', () => {}); // Remove any previous empty listeners
+            userIcon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                } else {
+                    dropdown.classList.add('show');
+                }
+            });
+        }
+
+        // Mouse leave on dropdown hides it immediately
+        dropdown.addEventListener('mouseleave', () => {
+            dropdown.classList.remove('show');
+        });
+
+        // Remove CSS hover effect by removing the hover style class
+        // We will remove the CSS rule '.user-menu:hover .dropdown' by overriding it here
+        const styleSheet = document.styleSheets[0];
+        for (let i = styleSheet.cssRules.length - 1; i >= 0; i--) {
+            const rule = styleSheet.cssRules[i];
+            if (rule.selectorText === '.user-menu:hover .dropdown') {
+                styleSheet.deleteRule(i);
+            }
+        }
+    }
 };
