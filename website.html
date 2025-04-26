@@ -9,8 +9,10 @@
 <body>
 <header>
 <div class="logo">E-Shop</div>
-<input type="text" placeholder="Search product..." id="searchBox">
-<button onclick="searchProduct()">Search</button>
+<div class="search-container">
+    <input type="text" placeholder="Search product..." id="searchBox">
+    <button onclick="searchProduct()">Search</button>
+</div>
 
 <div class="header-right">
 <div class="cart" onclick="viewCart()">🛒 <span id="cartCount">0</span></div>
@@ -46,6 +48,9 @@
 <button class="category-btn" data-category-name="Fitness"><span class="category-icon">🏋️‍♂️</span>Fitness
     <div class="submenu"></div>
 </button>
+<button class="category-btn" data-category-name="Furniture"><span class="category-icon">🛋️</span>Furniture
+    <div class="submenu"></div>
+</button>
 </div>
 </div>
 <section id="popular-products" class="category">
@@ -76,6 +81,6 @@
 <p>&copy; 2025 E-Shop. All rights reserved.</p>
 </footer>
 
-<script src="website.jss"></script>
+<script src="website.js"></script>
 </body>
 </html>
