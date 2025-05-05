@@ -3,20 +3,31 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
+const routes = require('./routes');
 
 app.use(cors());
 app.options('*', cors());
 
 // Middleware
-app.use(express.json()); // Built-in body parser for JSON
-app.use(express.urlencoded({ extended: true })); // Built-in body parser for URL-encoded data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
-const categoryRoutes = require('./routes/categories');
-const productRoutes = require('./routes/products');
-
-app.use('/api/category', categoryRoutes);
-app.use('/api/product', productRoutes);
+app.use('/api/category', routes.categoryRoutes);
+app.use('/api/product', routes.productRoutes);
+app.use('/api/banner', routes.bannerRoutes);
+app.use('/api/cart', routes.cartRoutes);
+app.use('/api/home-banner', routes.homeBannerRoutes);
+app.use('/api/home-side-banner', routes.homeSideBannerRoutes);
+app.use('/api/my-list', routes.myListRoutes);
+app.use('/api/order', routes.orderRoutes);
+app.use('/api/product-rams', routes.productRAMSRoutes);
+app.use('/api/product-reviews', routes.productReviewsRoutes);
+app.use('/api/product-size', routes.productSizeRoutes);
+app.use('/api/product-weight', routes.productWeightRoutes);
+app.use('/api/search', routes.searchRoutes);
+app.use('/api/sub-category', routes.subCategoryRoutes);
+app.use('/api/user', routes.userRoutes);
 
 // Database connection
 mongoose.connect(process.env.MONGODB_URI, {
