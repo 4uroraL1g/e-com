@@ -1,4 +1,4 @@
-const Category = require('../models/categories'); // Correct import
+const Category = require('../models/category'); // Correct import
 const express = require('express');
 const router = express.Router();
 
@@ -12,12 +12,14 @@ cloudinary.config({
 });
 
 router.get('/', async (req, res) => {
+    console.log('GET /api/category request received');
     try {
         const categories = await Category.find();
+        console.log('Categories fetched:', categories);
 
-        if (!categories) {
+        if (!categories || categories.length === 0) {
             console.error('No categories found');
-            return res.status(500).json({ success: false, message: 'No categories found' });
+            return res.status(404).json({ success: false, message: 'No categories found' });
         }
 
         res.status(200).json({ success: true, categories });

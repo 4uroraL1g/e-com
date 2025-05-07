@@ -4,6 +4,7 @@ const bannerRoutes = require('./banners');
 const cartRoutes = require('./cart');
 const homeBannerRoutes = require('./homeBanner');
 const homeSideBannerRoutes = require('./homeSideBanner');
+const homeBottomBannerRoutes = require('./homeBottomBanner');
 const myListRoutes = require('./myList');
 const orderRoutes = require('./orders');
 const productRAMSRoutes = require('./productRAMS');
@@ -13,6 +14,7 @@ const productWeightRoutes = require('./productWeight');
 const searchRoutes = require('./search');
 const subCategoryRoutes = require('./subCat');
 const userRoutes = require('./user');
+const imageUploadRoutes = require('../helpers/imageUpload');
 
 module.exports = {
   categoryRoutes,
@@ -21,6 +23,7 @@ module.exports = {
   cartRoutes,
   homeBannerRoutes,
   homeSideBannerRoutes,
+  homeBottomBannerRoutes,
   myListRoutes,
   orderRoutes,
   productRAMSRoutes,
@@ -30,4 +33,5 @@ module.exports = {
   searchRoutes,
   subCategoryRoutes,
   userRoutes,
+  imageUploadRoutes,
 };
