@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/products'); // Import the Product model
-const Category = require('../models/categories'); // Import the Category model (for reference population)
+const Category = require('../models/category'); // Import the Category model (for reference population)
 
 router.get('/', async (req, res) => {
     try {
