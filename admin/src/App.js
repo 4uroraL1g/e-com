@@ -9,10 +9,10 @@ import Sidebar from "./components/SideBar";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import Products from "./pages/Products";
-import Category from "./pages/Category/categoryList";
 import ProductDetails from "./pages/ProductDetails";
 import ProductUpload from "./pages/Products/addProduct";
 import EditProduct from "./pages/Products/editProduct";
+import Category from "./pages/Category/categoryList";
 import CategoryAdd from "./pages/Category/addCategory";
 import EditCategory from "./pages/Category/editCategory";
 import SubCatAdd from "./pages/Category/addSubCat";
@@ -27,12 +27,10 @@ import EditHomeBannerSlide from "./pages/HomeBanner/editSlide";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import LoadingBar from "react-top-loading-bar";
-import { fetchDataFromApi } from "./utils/api";
-import axios from "axios";
 import BannersList from "./pages/Banner/addHomeBanner";
-import AddBanner from "./pages/Banner/editHomeBanner"; 
-import EditBanner from "./pages/Banner/viewBanner"; 
-import HomeSideBannersList from "./pages/HomeSideBanners/bannerList"; 
+import AddBanner from "./pages/Banner/editHomeBanner";
+import EditBanner from "./pages/Banner/viewBanner";
+import HomeSideBannersList from "./pages/HomeSideBanners/bannerList";
 import AddHomeSideBanner from "./pages/HomeSideBanners/addHomeSideBanner";
 import EditHomeSideBanner from "./pages/HomeSideBanners/editHomeBanner";
 import HomeBottomBannersList from "./pages/HomeBottomBanners/bannerList";
@@ -76,7 +74,7 @@ const App = () => {
     } else {
       setIsLogin(false);
     }
-  }, [isLogin, localStorage.getItem("user")]);
+  }, []);
 
   // Fetch country list
   useEffect(() => {
@@ -87,14 +85,14 @@ const App = () => {
     try {
       const res = await axios.get(url);
       if (res?.data?.data) {
-        const arr = res.data.data.map(item => ({
+        const arr = res.data.data.map((item) => ({
           value: item?.iso2,
           label: item?.country,
         }));
         setCountryList(arr);
       }
     } catch (err) {
-      // handle error if needed
+      console.error(err);
     }
   };
 
@@ -155,7 +153,6 @@ const App = () => {
         <Snackbar open={alertBox.open} autoHideDuration={6000} onClose={handleClose}>
           <Alert
             onClose={handleClose}
-            autoHideDuration={6000}
             severity={alertBox.error ? "error" : "success"}
             variant="filled"
             sx={{ width: "100%" }}
@@ -172,47 +169,51 @@ const App = () => {
                 onClick={() => setIsOpenNav(false)}
               ></div>
               <div
-                className={`sidebarWrapper ${isToggleSidebar ? "toggle" : ""} ${isOpenNav ? "open" : ""}`}
+                className={`sidebarWrapper ${isToggleSidebar ? "toggle" : ""} ${
+                  isOpenNav ? "open" : ""
+                }`}
               >
                 <Sidebar />
               </div>
             </>
           )}
           <div
-            className={`content ${isHideSidebarAndHeader ? "full" : ""} ${isToggleSidebar ? "toggle" : ""}`}
+            className={`content ${isHideSidebarAndHeader ? "full" : ""} ${
+              isToggleSidebar ? "toggle" : ""
+            }`}
           >
             <Routes>
-              <Route path="/" exact element={<Dashboard />} />
-              <Route path="/dashboard" exact element={<Dashboard />} />
-              <Route path="/login" exact element={<Login />} />
-              <Route path="/signUp" exact element={<SignUp />} />
-              <Route path="/products" exact element={<Products />} />
-              <Route path="/product/details/:id" exact element={<ProductDetails />} />
-              <Route path="/product/upload" exact element={<ProductUpload />} />
-              <Route path="/product/edit/:id" exact element={<EditProduct />} />
-              <Route path="/category" exact element={<Category />} />
-              <Route path="/category/add" exact element={<CategoryAdd />} />
-              <Route path="/category/edit/:id" exact element={<EditCategory />} />
-              <Route path="/subCategory/" exact element={<SubCatList />} />
-              <Route path="/subCategory/add" exact element={<SubCatAdd />} />
-              <Route path="/productRAMS/add" exact element={<AddProductRAMS />} />
-              <Route path="/productWEIGHT/add" exact element={<ProductWeight />} />
-              <Route path="/productSIZE/add" exact element={<ProductSize />} />
-              <Route path="/orders/" exact element={<Orders />} />
-              <Route path="/homeBannerSlide/add" exact element={<AddHomeBannerSlide />} />
-              <Route path="/homeBannerSlide/list" exact element={<HomeBannerSlideList />} />
-              <Route path="/homeBannerSlide/edit/:id" exact element={<EditHomeBannerSlide />} />
-              <Route path="/banners" exact element={<BannersList />} />
-              <Route path="/banners/add" exact element={<AddBanner />} />
-              <Route path="/banners/edit/:id" exact element={<EditBanner />} />
-              <Route path="/homeSideBanners" exact element={<HomeSideBannersList />} />
-              <Route path="/homeSideBanners/add" exact element={<AddHomeSideBanner />} />
-              <Route path="/homeSideBanners/edit/:id" exact element={<EditHomeSideBanner />} />
-              <Route path="/homeBottomBanners" exact element={<HomeBottomBannersList />} />
-              <Route path="/homeBottomBanners/add" exact element={<AddHomeBottomBanner />} />
-              <Route path="/homeBottomBanners/edit/:id" exact element={<EditHomeBottomBanner />} />
-              <Route path="/my-account" exact element={<MyAccount />} />
-              <Route path="/verify-account" exact element={<VerifyAccount />} />
+              {/* Dashboard */}
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+
+              {/* Authentication */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/signUp" element={<SignUp />} />
+
+              {/* Products */}
+              <Route path="/products" element={<Products />} />
+              <Route path="/product/details/:id" element={<ProductDetails />} />
+              <Route path="/product/upload" element={<ProductUpload />} />
+              <Route path="/product/edit/:id" element={<EditProduct />} />
+
+              {/* Categories */}
+              <Route path="/category" element={<Category />} />
+              <Route path="/category/add" element={<CategoryAdd />} />
+              <Route path="/category/edit/:id" element={<EditCategory />} />
+              <Route path="/subCategory" element={<SubCatList />} />
+              <Route path="/subCategory/add" element={<SubCatAdd />} />
+
+              {/* Orders */}
+              <Route path="/orders" element={<Orders />} />
+
+              {/* Banners */}
+              <Route path="/banners" element={<BannersList />} />
+              <Route path="/banners/add" element={<AddBanner />} />
+              <Route path="/banners/edit/:id" element={<EditBanner />} />
+
+              {/* Fallback */}
+              <Route path="*" element={<div>404 Page Not Found</div>} />
             </Routes>
           </div>
         </div>
