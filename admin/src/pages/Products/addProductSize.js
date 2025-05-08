@@ -1,0 +1,214 @@
+import React, { useContext, useEffect, useRef, useState } from "react";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import { emphasize, styled } from "@mui/material/styles";
+import Chip from "@mui/material/Chip";
+import HomeIcon from "@mui/icons-material/Home";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import { FaCloudUploadAlt, FaPencilAlt } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { MyContext } from "../../App";
+import {
+  deleteData,
+  editData,
+  fetchDataFromApi,
+  postData,
+} from "../../utils/api";
+
+// Breadcrumb styling
+const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+  const backgroundColor =
+    theme.palette.mode === "light"
+      ? theme.palette.grey[100]
+      : theme.palette.grey[800];
+  return {
+    backgroundColor,
+    height: theme.spacing(3),
+    color: theme.palette.text.primary,
+    fontWeight: theme.typography.fontWeightRegular,
+    "&:hover, &:focus": {
+      backgroundColor: emphasize(backgroundColor, 0.06),
+    },
+    "&:active": {
+      boxShadow: theme.shadows[1],
+      backgroundColor: emphasize(backgroundColor, 0.12),
+    },
+  };
+});
+
+const AddProductSize = () => {
+  const [editId, setEditId] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [productSizeData, setProductSizeData] = useState([]);
+  const [formFields, setFormFields] = useState({
+    size: "",
+  });
+
+  const inputRef = useRef();
+  const context = useContext(MyContext);
+
+  useEffect(() => {
+    fetchProductSizes();
+  }, []);
+
+  const fetchProductSizes = () => {
+    fetchDataFromApi("/api/productSIZE").then((res) => {
+      setProductSizeData(res);
+    });
+  };
+
+  const handleInputChange = (e) => {
+    setFormFields((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!formFields.size) {
+      context.setAlertBox({
+        open: true,
+        error: true,
+        msg: "Please add Product size",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    if (!editId) {
+      postData("/api/productSIZE/create", formFields).then(() => {
+        resetForm();
+        fetchProductSizes();
+      });
+    } else {
+      editData(`/api/productSIZE/${editId}`, formFields).then(() => {
+        resetForm();
+        fetchProductSizes();
+      });
+    }
+  };
+
+  const resetForm = () => {
+    setFormFields({ size: "" });
+    setEditId("");
+    setIsLoading(false);
+  };
+
+  const handleDelete = (id) => {
+    deleteData(`/api/productSIZE/${id}`).then(() => {
+      fetchProductSizes();
+    });
+  };
+
+  const handleEdit = (id) => {
+    inputRef.current.focus();
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    fetchDataFromApi(`/api/productSIZE/${id}`).then((res) => {
+      setEditId(id);
+      setFormFields({ size: res.size });
+    });
+  };
+
+  return (
+    <div className="right-content w-100">
+      <div className="card shadow border-0 w-100 flex-row p-4 mt-2">
+        <h5 className="mb-0">Add Product Size</h5>
+        <Breadcrumbs aria-label="breadcrumb" className="ml-auto breadcrumbs_">
+          <StyledBreadcrumb
+            component="a"
+            href="#"
+            label="Dashboard"
+            icon={<HomeIcon fontSize="small" />}
+          />
+          <StyledBreadcrumb
+            component="a"
+            label="Product Size"
+            href="#"
+            deleteIcon={<ExpandMoreIcon />}
+          />
+          <StyledBreadcrumb
+            label="Add Product Size"
+            deleteIcon={<ExpandMoreIcon />}
+          />
+        </Breadcrumbs>
+      </div>
+
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="col-sm-9">
+            <div className="card p-4 mt-0">
+              <div className="form-group">
+                <h6>PRODUCT SIZE</h6>
+                <input
+                  type="text"
+                  name="size"
+                  value={formFields.size}
+                  onChange={handleInputChange}
+                  ref={inputRef}
+                />
+              </div>
+              <Button type="submit" className="btn-blue btn-lg btn-big w-100">
+                <FaCloudUploadAlt /> &nbsp;
+                {isLoading ? (
+                  <CircularProgress color="inherit" className="loader" />
+                ) : (
+                  "PUBLISH AND VIEW"
+                )}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      {productSizeData.length > 0 && (
+        <div className="row">
+          <div className="col-md-9">
+            <div className="card p-4 mt-0">
+              <div className="table-responsive mt-3">
+                <table className="table table-bordered table-striped v-align">
+                  <thead className="thead-dark">
+                    <tr>
+                      <th>PRODUCT SIZE</th>
+                      <th width="25%">ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {productSizeData.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.size}</td>
+                        <td>
+                          <div className="actions d-flex align-items-center">
+                            <Button
+                              className="success"
+                              color="success"
+                              onClick={() => handleEdit(item.id)}
+                            >
+                              <FaPencilAlt />
+                            </Button>
+                            <Button
+                              className="error"
+                              color="error"
+                              onClick={() => handleDelete(item.id)}
+                            >
+                              <MdDelete />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default AddProductSize;
