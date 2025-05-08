@@ -8,7 +8,7 @@ import { emphasize, styled } from "@mui/material/styles";
 import { MdBrandingWatermark, MdFilterVintage, MdRateReview } from "react-icons/md";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { BsPatchCheckFill } from "react-icons/bs";
-import UserAvatarImgComponent from "../../components/userAvatarImg";
+import UserAvatarImgComponent from "../../components/UserAvatarImg";
 import ProductZoom from "../../components/ProductZoom";
 import { fetchDataFromApi } from "../../utils/api";
 

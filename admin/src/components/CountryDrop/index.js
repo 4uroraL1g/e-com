@@ -5,7 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import { IoIosSearch } from "react-icons/io";
 import { MdClose } from "react-icons/md";
 import Slide from "@mui/material/Slide";
-import { MyContext } from "../../App";
+import { MyContext } from "../../app";
 import { useParams } from "react-router-dom";
 
 const Transition = React.forwardRef(function Transition(props, ref) {

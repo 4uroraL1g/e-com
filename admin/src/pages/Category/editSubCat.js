@@ -11,7 +11,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import { editData, fetchDataFromApi } from "../../utils/api";
-import { MyContext } from "../../App";
+import { MyContext } from "../../app";
 
 // Breadcrumb styling
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {

@@ -13,7 +13,7 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Logout from "@mui/icons-material/Logout";
 import Divider from "@mui/material/Divider";
 import { MyContext } from "../../App";
-import UserAvatarImgComponent from "../userAvatarImg";
+import UserAvatarImgComponent from "../UserAvatarImg";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
