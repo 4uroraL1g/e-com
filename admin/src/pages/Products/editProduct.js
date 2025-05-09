@@ -13,7 +13,6 @@ import { FaCloudUploadAlt, FaRegImages } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import Select2 from "react-select";
 import { useNavigate, useParams } from "react-router-dom";
 import { MyContext } from "../../App";
 import {
@@ -23,7 +22,6 @@ import {
   fetchDataFromApi,
   uploadImage,
 } from "../../utils/api";
-
 // Breadcrumb styling
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   const backgroundColor =
