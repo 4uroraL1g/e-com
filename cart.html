@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Giỏ hàng - E-Shop</title>
+<link rel="stylesheet" href="website.css" />
+<style>
+  .cart-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 10px;
+  }
+  .cart-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  .cart-item img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+  }
+  .cart-item-details {
+    flex-grow: 1;
+  }
+  .cart-item-name {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  .cart-item-price {
+    color: #555;
+  }
+  .cart-total {
+    text-align: right;
+    font-size: 1.4em;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">E-Shop</div>
+  <nav>
+    <a href="website.html">Trang chủ</a>
+  </nav>
+</header>
+
+<div class="cart-container">
+  <h1>Giỏ hàng của bạn</h1>
+  <div id="cartItemsContainer"></div>
+  <div class="cart-total" id="cartTotal"></div>
+  <a href="website.html" class="back-link">← Quay lại trang chủ</a>
+</div>
+
+<script>
+  function loadCart() {
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const cartTotalElem = document.getElementById('cartTotal');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cartItemsContainer.innerHTML = '';
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = '<p>Giỏ hàng trống!</p>';
+      cartTotalElem.textContent = '';
+      return;
+    }
+
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price;
+      const itemElem = document.createElement('div');
+      itemElem.className = 'cart-item';
+      itemElem.innerHTML = `
+        <img src="${item.img}" alt="${item.name}" />
+        <div class="cart-item-details">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">${item.price.toLocaleString()} VND</div>
+        </div>
+      `;
+      cartItemsContainer.appendChild(itemElem);
+    });
+
+    cartTotalElem.textContent = 'Tổng cộng: ' + total.toLocaleString() + ' VND';
+  }
+
+  document.addEventListener('DOMContentLoaded', loadCart);
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+,item_id,name,category,price,link,height,width,depth
+0,1,Twin Bed,Beds,1000000,,135,190,40 
+1,2,Twin XL Beds,Beds,1100000,,150,190,43
+2,3,Full Bed / Double Bed,Beds,1200000,,89,190,41
+3,4,Queen Bed,Beds,1300000,,150,200,50
+4,5,King Bed,Beds,1400000,,180,200,45
+5,6,California King Bed,Beds,1500000,,200,210,60
+6,7,Single Bed,Beds,1600000,,90,190,40
+7,8,Crib,Beds,1700000,,123,195,50
+8,9,Toddler Bed,Beds,1800000,,130,201,53
+9,10,Bunk Bed,Beds,1900000,,100,199,47
+10,11,Loft Bed / Wall Bed,Beds,2000000,,164,211,49
+11,12,Murphy Bed / Wall Bed,Beds,2100000,,134,197,48
+12,13,Daybed,Beds,2200000,,145,202,58
+13,14,Trundle Bed,Beds,2300000,,102,205,47
+14,15,Sofa Bed / Sleeper Bed,Beds,2400000,,105,198,43
+15,16,Platform Bed,Beds,2500000,,130,210,50
+16,17,Canopy Bed,Beds,2600000,,110,190,37
+17,18,Four-Poster Bed,Beds,2700000,,132,204,48
+18,19,Storage Bed,Beds,2800000,,128,193,47
+19,20,Adjustable Bed,Beds,2900000,,119,219,60
+20,21,Twin Bed,Beds,3000000,,128,210,59
+
+21,22,LED TV,TVs,5000000,,45,80,8
+22,23,OLED TV,TVs,15000000,,45,85,5
+23,24,QLED TV,TVs,12000000,,50,90,6
+24,25,LCD TV,TVs,4000000,,45,75,9
+25,26,Smart TV,TVs,7000000,,47,82,6
+26,27,4K TV,TVs,9000000,,48,85,7
+27,28,8K TV,TVs,25000000,,50,88,7
+28,29,Curved TV,TVs,10000000,,49,86,8
+29,30,Mini-LED TV,TVs,13000000,,46,83,5
+30,31,Portable TV,TVs,3000000,,30,50,5
+31,32,Plasma TV,TVs,6000000,,48,78,12
+32,33,Mirror TV,TVs,20000000,,55,90,6
+33,34,Projector TV,TVs,8000000,,12,30,25
+34,35,Commercial Display TV,TVs,11000000,,60,100,10
+35,36,Touchscreen TV,TVs,16000000,,50,90,7
+36,37,CRT TV,TVs,2000000,,55,70,45
+37,38,Full HD TV,TVs,6000000,,45,80,7
+38,39,Outdoor TV,TVs,17000000,,50,85,9
+39,40,3D TV,TVs,10000000,,48,84,6
+40,41,Smart 4K OLED TV,TVs,18000000,,49,88,6
+
+41,42,Dining Table,Tables,3000000,,75,160,90
+42,43,Coffee Table,Tables,1500000,,45,100,60
+43,44,Side Table,Tables,1000000,,55,50,45
+44,45,Console Table,Tables,1700000,,80,120,40
+45,46,Study Table,Tables,2500000,,75,140,70
+46,47,Computer Table,Tables,2200000,,75,130,65
+47,48,Bedside Table,Tables,800000,,50,45,40
+48,49,Folding Table,Tables,900000,,72,120,70
+49,50,Bar Table,Tables,1800000,,110,60,60
+50,51,Nested Tables,Tables,1600000,,45,100,60
+51,52,Round Table,Tables,2800000,,75,120,120
+52,53,Square Table,Tables,2500000,,75,100,100
+53,54,Extendable Table,Tables,3500000,,75,160,90
+54,55,Drop-leaf Table,Tables,2700000,,75,150,85
+55,56,Work Table,Tables,2000000,,76,150,80
+56,57,Game Table,Tables,2200000,,76,120,80
+57,58,Vanity Table,Tables,1900000,,75,100,50
+58,59,Glass Table,Tables,2400000,,74,130,70
+59,60,Picnic Table,Tables,2100000,,72,180,75
+
+60,61,Sliding Door Wardrobe,Wardrobes,5500000,,200,160,60
+61,62,Hinged Door Wardrobe,Wardrobes,5200000,,210,170,60
+62,63,Walk-in Wardrobe,Wardrobes,20000000,,250,300,150
+63,64,Free-standing Wardrobe,Wardrobes,4800000,,190,150,55
+64,65,Built-in Wardrobe,Wardrobes,15000000,,230,260,65
+65,66,Mirrored Wardrobe,Wardrobes,6000000,,210,170,60
+66,67,Open Wardrobe,Wardrobes,3500000,,185,130,55
+67,68,Corner Wardrobe,Wardrobes,5000000,,200,160,70
+68,69,Single Door Wardrobe,Wardrobes,3000000,,180,90,55
+69,70,Double Door Wardrobe,Wardrobes,4500000,,190,120,60
+70,71,Triple Door Wardrobe,Wardrobes,5800000,,200,160,60
+71,72,Modular Wardrobe,Wardrobes,7000000,,210,170,65
+72,73,Sliding Mirror Wardrobe,Wardrobes,6200000,,210,170,60
+73,74,Loft Wardrobe,Wardrobes,8000000,,240,200,70
+74,75,Kids' Wardrobe,Wardrobes,3200000,,160,100,50
+75,76,Minimalist Wardrobe,Wardrobes,5000000,,200,150,55
+76,77,Rustic Wardrobe,Wardrobes,5500000,,210,160,60
+77,78,Industrial Wardrobe,Wardrobes,6000000,,210,160,65
+78,79,Vintage Wardrobe,Wardrobes,7000000,,220,180,70
+79,80,Smart Wardrobe,Wardrobes,10000000,,220,190,70
+
+80,81,Kitchen Cabinet,Cabinets,2500000,,80,100,60
+81,82,Wall Cabinet,Cabinets,1800000,,60,80,35
+82,83,Base Cabinet,Cabinets,2200000,,85,90,60
+83,84,Tall Cabinet,Cabinets,3500000,,200,70,60
+84,85,Bathroom Cabinet,Cabinets,1500000,,75,65,45
+85,86,Vanity Cabinet,Cabinets,2800000,,80,100,50
+86,87,Corner Cabinet,Cabinets,2400000,,90,90,65
+87,88,TV Cabinet,Cabinets,3000000,,60,150,45
+88,89,Filing Cabinet,Cabinets,1900000,,100,45,60
+89,90,Storage Cabinet,Cabinets,2000000,,120,90,60
+90,91,Medicine Cabinet,Cabinets,1300000,,60,50,20
+91,92,Display Cabinet,Cabinets,3200000,,180,90,40
+92,93,Wardrobe Cabinet,Cabinets,4000000,,190,100,55
+93,94,Shoe Cabinet,Cabinets,1700000,,110,80,35
+94,95,Laundry Cabinet,Cabinets,2500000,,170,90,50
+95,96,Utility Cabinet,Cabinets,2600000,,180,85,55
+96,97,Bookcase Cabinet,Cabinets,3000000,,190,100,40
+97,98,Bar Cabinet,Cabinets,3500000,,150,90,45
+98,99,Buffet Cabinet,Cabinets,4000000,,90,160,50
+99,100,Lockable Cabinet,Cabinets,2800000,,150,80,40
+
+,item_id,name,category,price,link,height,width,depth
+100,101,Sectional Sofa,Sofas,1000000,,80,200,90
+101,102,L-Shaped Sofa,Sofas,1100000,,85,220,100
+102,103,U-Shaped Sofa,Sofas,1200000,,75,190,85
+103,104,Sofa Bed / Sleeper Sofa,Sofas,1300000,,90,230,95
+104,105,Loveseat,Sofas,1400000,,80,200,90
+105,106,Armchair / Single Sofa,Sofas,1500000,,85,210,100
+106,107,Corner Sofa,Sofas,1600000,,78,185,88
+107,108,Armless Sofa,Sofas,1700000,,92,240,100
+108,109,Recliner Sofa,Sofas,1800000,,80,195,85
+109,110,Ottoman,Sofas,1900000,,84,205,90
+110,111,Chesterfield Sofa,Sofas,2000000,,86,215,95
+111,112,Scandinavian Sofa,Sofas,2100000,,90,230,100
+112,113,Modern Sofa,Sofas,2200000,,85,220,95
+113,114,Leather Sofa,Sofas,2300000,,82,200,88
+114,115,Fabric Sofa,Sofas,2400000,,83,210,92
+115,116,Velvet Sofa,Sofas,2500000,,88,225,97
+116,117,Rattan/Wicker Sofa,Sofas,2600000,,79,190,85
+117,118,Modular Sofa,Sofas,2700000,,81,200,90
+118,119,Curved Sofa,Sofas,2800000,,87,215,95
+119,120,Hammock/Swing Sofa,Sofas,2900000,,80,195,88
+
+,item_id,name,category,price,link,height,width,depth
+120,121,Armchair,Chairs,500000,https://www.shutterstock.com/image-photo/modern-armchair-isolated-on-white-background-260nw-1030212346.jpg,90,80,85
+121,122,Recliner Chair,Chairs,600000,https://www.gettyimages.com/photos/recliner-chair,95,85,90
+122,123,Rocking Chair,Chairs,550000,https://www.shutterstock.com/image-photo/rocking-chair-isolated-on-white-background-260nw-1030212342.jpg,88,75,85
+123,124,Accent Chair,Chairs,520000,https://www.shutterstock.com/image-photo/accent-chair-isolated-on-white-background-260nw-1030212343.jpg,86,78,82
+124,125,Club Chair,Chairs,580000,https://www.gettyimages.com/photos/club-chair,90,80,88
+125,126,Barrel Chair,Chairs,570000,https://www.shutterstock.com/image-photo/barrel-chair-isolated-on-white-background-260nw-1030212344.jpg,85,76,84
+126,127,Wingback Chair,Chairs,620000,https://www.gettyimages.com/photos/wingback-chair,92,82,86
+127,128,Slipper Chair,Chairs,510000,https://www.shutterstock.com/image-photo/slipper-chair-isolated-on-white-background-260nw-1030212345.jpg,84,77,80
+128,129,Parsons Chair,Chairs,530000,https://www.shutterstock.com/image-photo/parsons-chair-isolated-on-white-background-260nw-1030212346.jpg,83,75,78
+129,130,Chaise Lounge,Chairs,700000,https://www.gettyimages.com/photos/chaise-lounge,95,160,75
+130,131,Desk Chair,Chairs,540000,https://www.ikea.com/us/en/cat/desk-chairs-20652/,87,70,75
+131,132,Dining Chair,Chairs,500000,https://www.gettyimages.com/photos/dining-chair,85,60,65
+132,133,Swivel Chair,Chairs,610000,https://www.shutterstock.com/image-photo/swivel-chair-isolated-on-white-background-260nw-1030212347.jpg,89,78,80
+133,134,Task Chair,Chairs,520000,https://www.gettyimages.com/photos/task-chair,88,68,72
+134,135,Gaming Chair,Chairs,750000,https://www.shutterstock.com/image-photo/gaming-chair-isolated-on-white-background-260nw-1030212348.jpg,93,70,78
+135,136,Stacking Chair,Chairs,430000,https://www.shutterstock.com/image-photo/stacking-chair-isolated-on-white-background-260nw-1030212349.jpg,82,60,65
+136,137,Folding Chair,Chairs,420000,https://www.gettyimages.com/photos/folding-chair,80,55,60
+137,138,Plastic Chair,Chairs,400000,https://www.shutterstock.com/image-photo/plastic-chair-isolated-on-white-background-260nw-1030212350.jpg,81,58,62
+138,139,Wooden Chair,Chairs,480000,https://www.gettyimages.com/photos/wooden-chair,85,62,68
+139,140,Metal Chair,Chairs,470000,https://www.shutterstock.com/image-photo/metal-chair-isolated-on-white-background-260nw-1030212351.jpg,84,61,66

@@ -8,14 +8,14 @@
 </head>
 <body>
 <header>
-<div class="logo">E-Shop</div>
+  <div class="logo">E-Shop</div>
 <div class="search-container">
     <input type="text" placeholder="Search product..." id="searchBox">
     <button onclick="searchProduct()">Search</button>
 </div>
 
 <div class="header-right">
-<div class="cart" onclick="viewCart()">🛒 <span id="cartCount">0</span></div>
+<a href="cart.html" class="cart">🛒 <span id="cartCount">0</span></a>
 <div class="user-menu">
 <div class="user-icon">👤</div>
 <div class="dropdown">
@@ -30,51 +30,29 @@
 
 <div class="category-nav">
 <div class="category-list">
-<button class="category-btn" data-category-name="Phone and Laptop"><span class="category-icon">💻</span>Phone & Laptop
-    <div class="submenu"></div>
-</button>
-<button class="category-btn" data-category-name="Accessories & Audio"><span class="category-icon">🎧</span>Accessories
-    <div class="submenu"></div>
-</button>
-<button class="category-btn" data-category-name="Household appliances"><span class="category-icon">🏠</span>Home Appliances
-    <div class="submenu"></div>
-</button>
-<button class="category-btn" data-category-name="Gaming"><span class="category-icon">🎮</span>Gaming
-    <div class="submenu"></div>
-</button>
-<button class="category-btn" data-category-name="Books"><span class="category-icon">📚</span>Books
-    <div class="submenu"></div>
-</button>
-<button class="category-btn" data-category-name="Fitness"><span class="category-icon">🏋️‍♂️</span>Fitness
-    <div class="submenu"></div>
-</button>
-<button class="category-btn" data-category-name="Furniture"><span class="category-icon">🛋️</span>Furniture
-    <div class="submenu"></div>
-</button>
+<a href="beds.html" class="category-btn"><span class="category-icon">💻</span>Beds</a>
+<a href="chairs.html" class="category-btn"><span class="category-icon">🎧</span>Chairs</a>
+<a href="sofas.html" class="category-btn"><span class="category-icon">🏠</span>Sofas</a>
+<a href="tables.html" class="category-btn"><span class="category-icon">🎮</span>Tables</a>
+<a href="tv.html" class="category-btn"><span class="category-icon">📚</span>TV</a>
+<a href="wardrobes.html" class="category-btn"><span class="category-icon">🏋️‍♂️</span>Wardrobes</a>
+<a href="cabinet.html" class="category-btn"><span class="category-icon">🛋️</span>Cabinets</a>
 </div>
 </div>
-<section id="popular-products" class="category">
-    <h2>Popular Products</h2>
-    <div class="products" id="popularProductsContainer">
-        <!-- Popular products will be loaded here -->
-    </div>
-</section>
-
-<section id="new-products" class="category">
-    <h2>New Products</h2>
-    <div class="products" id="newProductsContainer">
-        <!-- New products will be loaded here -->
-    </div>
-</section>
-
-<section id="featured-products" class="category">
-    <h2>Featured Products</h2>
-    <div class="products" id="featuredProductsContainer">
-        <!-- Featured products will be loaded here -->
-    </div>
-</section>
 
 <main id="categories">
+  <section class="category">
+    <h2>Featured Products</h2>
+    <div id="featuredProductsContainer" class="products"></div>
+  </section>
+  <section class="category">
+    <h2>Popular Products</h2>
+    <div id="popularProductsContainer" class="products"></div>
+  </section>
+  <section class="category">
+    <h2>New Products</h2>
+    <div id="newProductsContainer" class="products"></div>
+  </section>
 </main>
 
 <footer>
@@ -82,5 +60,12 @@
 </footer>
 
 <script src="website.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadFeaturedProducts();
+    loadPopularProducts();
+    loadNewProducts();
+  });
+</script>
 </body>
 </html>
