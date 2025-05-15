@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cabinet &amp; cupboards - E-Shop Clone</title>
+<link rel="stylesheet" href="website.css" />
+</head>
+<body>
+<header>
+  <a href="website.html" class="logo">E-Shop</a>
+  <div class="search-container">
+    <input type="text" placeholder="Search product..." id="searchBox" />
+    <button onclick="searchProduct()">Search</button>
+  </div>
+  <div class="header-right">
+<a href="cart.html" class="cart">🛒 <span id="cartCount">0</span></a>
+    <div class="user-menu">
+      <div class="user-icon">👤</div>
+      <div class="dropdown">
+        <a href="#">My account</a>
+        <a href="#">My order</a>
+        <a href="#">Setting</a>
+        <a href="#">Sign out</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="category-nav">
+  <div class="category-list">
+    <a href="beds.html" class="category-btn"><span class="category-icon">🛏️</span>Beds</a>
+    <a href="chairs.html" class="category-btn"><span class="category-icon">🪑</span>Chairs</a>
+    <a href="sofas.html" class="category-btn"><span class="category-icon">🛋️</span>Sofas</a>
+    <a href="tables.html" class="category-btn"><span class="category-icon">┬─┬</span>Tables</a>
+    <a href="tv.html" class="category-btn"><span class="category-icon">📺</span>TV</a>
+    <a href="wardrobes.html" class="category-btn"><span class="category-icon">🚪</span>Wardrobes</a>
+    <a href="cabinet.html" class="category-btn"><span class="category-icon">🗄️</span>Cabinets</a>
+  </div>
+</nav>
+
+<main id="category-products" class="category">
+  <h2>Cabinets</h2>
+  <div class="products" id="productsContainer">
+    <!-- Products will be loaded here -->
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 E-Shop. All rights reserved.</p>
+</footer>
+
+<script src="website.js"></script>
+<script>
+  // Load products for Cabinet & cupboards category only
+  window.onload = () => {
+    const categoryName = "Cabinets";
+    const category = categories.find(cat => cat.name === categoryName);
+    const container = document.getElementById("productsContainer");
+    container.innerHTML = "";
+    if (category && category.products.length > 0) {
+      category.products.forEach(product => {
+        const productHTML = `
+          <div class="product">
+            <img src="${product.img}" alt="${product.name}" />
+            <h3>${product.name}</h3>
+            <p>${product.price.toLocaleString()} VND</p>
+            <p>Height: ${product.height}</p>
+            <p>Width: ${product.width}</p>
+            <p>Depth: ${product.depth}</p>
+            <button class="add-to-cart" onclick="addToCart(${product.id})">Add to cart</button>
+          </div>
+        `;
+        container.innerHTML += productHTML;
+      });
+    } else {
+      container.innerHTML = "<p>No products found in this category.</p>";
+    }
+  };
+</script>
+</body>
+</html>

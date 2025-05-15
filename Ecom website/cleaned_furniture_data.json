@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Beds",
+    "products": [
+      {
+        "id": 1,
+        "name": "Twin Bed",
+        "price": 1000000,
+        "img": "image/sofa-bed-castle-2.webp",
+        "url": "image/sofa-bed-castle-2.webp"
+      },
+      {
+        "id": 2,
+        "name": "Twin XL Bed",
+        "price": 1100000,
+        "img": "https://via.placeholder.com/100",
+        "url": "#"
+      },
+      {
+        "id": 3,
+        "name": "Full Bed / Double Bed",
+        "price": 1200000,
+        "img": "https://via.placeholder.com/100",
+        "url": "#"
+      },
+      {
+        "id": 4,
+        "name": "Queen Bed",
+        "price": 1300000,
+        "img": "https://via.placeholder.com/100",
+        "url": "#"
+      },
+      {
+        "id": 5,
+        "name": "King Bed",
+        "price": 1400000,
+        "img": "https://via.placeholder.com/100",
+        "url": "#"
+      },
+      {
+        "id": 6,
+        "name": "California King Bed",
+        "price": 1500000,
+        "img": "https://via.placeholder.com/100",
+        "url": "#"
+      },
+      {
+        "id": 7,
+        "name": "Daybed",
+        "price": 1600000,
+        "img": "https://via.placeholder.com/100",
+        "url": "#"
+      },
+      {
+        "id": 8,
+        "name": "Futon",
+        "price": 1700000,
+        "img": "https://via.placeholder.com/100",
+        "url": "#"
+      },
+      {
+        "id": 9,
+        "name": "Bunk Bed",
+        "price": 1800000,
+        "img": "https://via.placeholder.com/100",
+        "url": "#"
+      },
+      {
+        "id": 10,
+        "name": "Loft Bed",
+        "price": 1900000,
+        "img": "https://via.placeholder.com/100",
+        "url": "#"
+      }
+    ]
+  }
+]

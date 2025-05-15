@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Shop Clone</title>
+<link rel="stylesheet" href="website.css">
+</head>
+<body>
+<header>
+  <div class="logo">E-Shop</div>
+<div class="search-container">
+    <input type="text" placeholder="Search product..." id="searchBox">
+    <button onclick="searchProduct()">Search</button>
+</div>
+
+<div class="header-right">
+<a href="cart.html" class="cart">🛒 <span id="cartCount">0</span></a>
+<div class="user-menu">
+<div class="user-icon">👤</div>
+<div class="dropdown">
+<a href="#">My account</a>
+<a href="#">My order</a>
+<a href="#">Setting</a>
+<a href="#">Sign out</a>
+</div>
+</div>
+</div>
+</header>
+
+<div class="category-nav">
+<div class="category-list">
+<a href="beds.html" class="category-btn"><span class="category-icon">🛏️</span>Beds</a>
+<a href="chairs.html" class="category-btn"><span class="category-icon">🪑</span>Chairs</a>
+<a href="sofas.html" class="category-btn"><span class="category-icon">🛋️</span>Sofas</a>
+<a href="tables.html" class="category-btn"><span class="category-icon">┬─┬</span>Tables</a>
+<a href="tv.html" class="category-btn"><span class="category-icon">📺</span>TV</a>
+<a href="wardrobes.html" class="category-btn"><span class="category-icon">🚪</span>Wardrobes</a>
+<a href="cabinet.html" class="category-btn"><span class="category-icon">🗄️</span>Cabinets</a>
+</div>
+</div>
+
+<main id="categories">
+  <section class="category">
+    <h2>Featured Products</h2>
+    <div id="featuredProductsContainer" class="products"></div>
+  </section>
+  <section class="category">
+    <h2>Popular Products</h2>
+    <div id="popularProductsContainer" class="products"></div>
+  </section>
+  <section class="category">
+    <h2>New Products</h2>
+    <div id="newProductsContainer" class="products"></div>
+  </section>
+</main>
+
+<footer>
+<p>&copy; 2025 E-Shop. All rights reserved.</p>
+</footer>
+
+<script src="website.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadFeaturedProducts();
+    loadPopularProducts();
+    loadNewProducts();
+  });
+</script>
+</body>
+</html>
