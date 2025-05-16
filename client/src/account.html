@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #333;
+      color: #fff;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .user-menu {
+      position: relative;
+    }
+
+    .user-icon {
+      cursor: pointer;
+    }
+
+    .dropdown {
+      position: absolute;
+      right: 0;
+      background: white;
+      border: 1px solid #ccc;
+      display: none;
+      flex-direction: column;
+      min-width: 150px;
+      z-index: 10;
+    }
+
+    .dropdown a {
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+      display: block;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .user-menu:hover .dropdown {
+      display: flex;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      margin-top: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    section {
+      margin-top: 2rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    button {
+      margin-right: 10px;
+      padding: 8px 16px;
+      background: #007bff;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    button.danger {
+      background: #dc3545;
+    }
+
+    button.danger:hover {
+      background: #a71d2a;
+    }
+
+    .back-button {
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>My Account</h1>
+    <div class="user-menu">
+      <span class="user-icon">👤</span>
+      <div class="dropdown">
+        <a href="#" id="loginLink">Sign up / Login</a>
+        <a href="account.html" id="myAccountLink">My Account</a>
+        <a href="orders.html" id="myOrderLink">My Orders</a>
+        <a href="settings.html" id="settingLink">Settings</a>
+        <a href="#" id="logoutBtn">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <button class="back-button" onclick="window.location.href='website.html'">← Back to Home</button>
+
+    <h2>Welcome, <span id="userName">User</span>!</h2>
+
+    <section id="basicInfo">
+      <h3>Your Info</h3>
+      <ul>
+        <li><strong>Email:</strong> <span id="userEmail">-</span></li>
+      </ul>
+    </section>
+
+    <section id="orderHistory">
+      <h3>Order History</h3>
+      <ul>
+        <li>🛋️ Order #00123 - 2x Modern Sofas - $899 - Delivered</li>
+        <li>🪑 Order #00110 - 1x Wooden Chair - $120 - Delivered</li>
+        <li>🛏️ Order #00095 - 1x Queen Bed - $499 - Shipped</li>
+      </ul>
+    </section>
+
+    <section id="accountActions">
+      <h3>Account Settings</h3>
+      <button>Edit Profile</button>
+      <button>Change Password</button>
+      <button class="danger">Delete Account</button>
+    </section>
+  </main>
+
+  <script>
+    // Load from localStorage
+    const name = localStorage.getItem("name");
+    const email = localStorage.getItem("email");
+
+    document.getElementById("userName").textContent = name || "User";
+    document.getElementById("userEmail").textContent = email || "-";
+  </script>
+
+  <script src="user.js"></script>
+</body>
+</html>
