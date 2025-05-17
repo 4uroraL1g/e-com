@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Shop Clone</title>
+  <link rel="stylesheet" href="website.css" />
+  <link rel="stylesheet" href="darkmode.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">E-Shop</div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Search product..." id="searchBox" />
+      <button onclick="searchProduct()">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="cart.html" class="cart">🛒 <span id="cartCount">0</span></a>
+      <button id="darkModeToggle">Toggle Dark Mode</button>
+      <div class="user-menu">
+        <div class="user-icon">👤</div>
+        <div class="dropdown">
+          <a href="signup.html" id="loginLink">Sign up / Login</a>
+          <a href="account.html" id="myAccountLink" style="display:none;">My Account</a>
+          <a href="#">My order</a>
+          <a href="setting.html">Setting</a>
+          <a href="#" id="logoutBtn" style="display:none;">Sign out</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="category-nav">
+    <div class="category-list">
+      <a href="beds.html" class="category-btn"><span class="category-icon">🛏️</span>Beds</a>
+      <a href="chairs.html" class="category-btn"><span class="category-icon">🪑</span>Chairs</a>
+      <a href="sofas.html" class="category-btn"><span class="category-icon">🛋️</span>Sofas</a>
+      <a href="tables.html" class="category-btn"><span class="category-icon">🪟</span>Tables</a>
+      <a href="tv.html" class="category-btn"><span class="category-icon">📺</span>TV</a>
+      <a href="wardrobes.html" class="category-btn"><span class="category-icon">🚪</span>Wardrobes</a>
+      <a href="cabinet.html" class="category-btn"><span class="category-icon">📦</span>Cabinets</a>
+    </div>
+  </div>
+
+  <main id="categories">
+    <section class="category">
+      <h2>Featured Products</h2>
+      <div id="featuredProductsContainer" class="products"></div>
+    </section>
+    <section class="category">
+      <h2>Popular Products</h2>
+      <div id="popularProductsContainer" class="products"></div>
+    </section>
+    <section class="category">
+      <h2>New Products</h2>
+      <div id="newProductsContainer" class="products"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 E-Shop. All rights reserved.</p>
+  </footer>
+
+  <script src="website.js"></script>
+  <script src="init.js"></script>
+  <script src="darkmode.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      loadFeaturedProducts();
+      loadPopularProducts();
+      loadNewProducts();
+
+      const loginLink = document.getElementById("loginLink");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const myAccountLink = document.getElementById("myAccountLink");
+
+      function updateUserUI() {
+        const email = localStorage.getItem("email");
+        const token = localStorage.getItem("token");
+
+        if (token && email) {
+          loginLink.textContent = `Hi, ${email}`;
+          loginLink.href = "#";
+          myAccountLink.style.display = "block";
+          logoutBtn.style.display = "block";
+        } else {
+          loginLink.textContent = "Sign up / Login";
+          loginLink.href = "signup.html";
+          myAccountLink.style.display = "none";
+          logoutBtn.style.display = "none";
+        }
+      }
+
+      updateUserUI();
+
+      logoutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        alert("You have been logged out.");
+        updateUserUI();
+      });
+    });
+  </script>
+</body>
+</html>

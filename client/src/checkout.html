@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Checkout - E-Shop</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 0;
+  }
+  form {
+    background: white;
+    padding: 2.5rem 3rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    width: 450px;
+    max-width: 95vw;
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    margin-bottom: 1.5rem;
+    color: #3c3c3c;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  label {
+    font-weight: 600;
+    margin: 12px 0 6px 0;
+    color: #333;
+    user-select: none;
+  }
+  input, select {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1.5px solid #ddd;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  input:focus, select:focus {
+    outline: none;
+    border-color: #6c63ff;
+    box-shadow: 0 0 8px #6c63ff55;
+  }
+  .small-input {
+    width: 48%;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 4%;
+  }
+  .payment-details {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f9f9ff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .note {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 4px;
+    font-style: italic;
+  }
+  button {
+    margin-top: 2rem;
+    padding: 12px;
+    font-size: 1.2rem;
+    background: #6c63ff;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  button:hover {
+    background: #5248c8;
+  }
+  .radio-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 8px;
+  }
+  .radio-group label {
+    font-weight: 500;
+    color: #444;
+    cursor: pointer;
+    user-select: none;
+  }
+  .radio-group input {
+    margin-right: 6px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<form id="checkoutForm" autocomplete="off">
+  <h2>Checkout Confirmation</h2>
+
+  <label for="fullname">Full Name</label>
+  <input type="text" id="fullname" name="fullname" placeholder="Nguyễn Văn A" required />
+
+  <label for="phone">Phone Number</label>
+  <input type="tel" id="phone" name="phone" placeholder="0123 456 789" pattern="[0-9\s\-]+" required />
+
+  <label for="address">Shipping Address</label>
+  <input type="text" id="address" name="address" placeholder="123 Đường ABC, Quận 1, TP.HCM" required />
+
+  <label>Payment Method</label>
+  <div class="radio-group">
+    <label><input type="radio" name="paymentMethod" value="cod" required /> Cash on Delivery</label>
+    <label><input type="radio" name="paymentMethod" value="transfer" /> Bank Transfer</label>
+    <label><input type="radio" name="paymentMethod" value="atm" /> ATM Card</label>
+  </div>
+
+  <div id="paymentDetails" class="payment-details" style="display:none;">
+    <!-- Bank Transfer or ATM Card details -->
+    <label for="bankName">Bank Name</label>
+    <select id="bankName" name="bankName" required>
+      <option value="">Select your bank</option>
+      <option>Vietcombank</option>
+      <option>VietinBank</option>
+      <option>Techcombank</option>
+      <option>MB Bank</option>
+      <option>ACB</option>
+      <option>TPBank</option>
+      <option>Other</option>
+    </select>
+
+    <label for="cardNumber">Card Number</label>
+    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" pattern="[\d\s]+" inputmode="numeric" />
+
+    <div class="row">
+      <div class="small-input">
+        <label for="expiryDate">Expiry Date</label>
+        <input type="month" id="expiryDate" name="expiryDate" />
+      </div>
+      <div class="small-input">
+        <label for="cvv">CVV</label>
+        <input type="password" id="cvv" name="cvv" maxlength="3" pattern="\d{3}" />
+      </div>
+    </div>
+    <div class="note">* Your card info is safe with us. This is just a demo :)</div>
+  </div>
+
+  <button type="submit">Confirm Purchase</button>
+</form>
+
+<script>
+  const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+  const paymentDetailsDiv = document.getElementById('paymentDetails');
+  const bankName = document.getElementById('bankName');
+  const cardNumber = document.getElementById('cardNumber');
+  const expiryDate = document.getElementById('expiryDate');
+  const cvv = document.getElementById('cvv');
+
+  function resetPaymentFields() {
+    bankName.required = false;
+    cardNumber.required = false;
+    expiryDate.required = false;
+    cvv.required = false;
+    bankName.value = '';
+    cardNumber.value = '';
+    expiryDate.value = '';
+    cvv.value = '';
+  }
+
+  paymentRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (radio.value === 'transfer' || radio.value === 'atm') {
+        paymentDetailsDiv.style.display = 'block';
+        bankName.required = true;
+        cardNumber.required = true;
+        expiryDate.required = true;
+        cvv.required = true;
+      } else {
+        paymentDetailsDiv.style.display = 'none';
+        resetPaymentFields();
+      }
+    });
+  });
+
+  document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const fullname = document.getElementById('fullname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+
+    if (!fullname || !phone || !address || !paymentMethod) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    if (paymentMethod === 'transfer' || paymentMethod === 'atm') {
+      if (!bankName.value) {
+        alert('Please select your bank.');
+        return;
+      }
+      if (!cardNumber.value.match(/^\d{4}\s?\d{4}\s?\d{4}\s?\d{4}$/)) {
+        alert('Please enter a valid 16-digit card number.');
+        return;
+      }
+      if (!expiryDate.value) {
+        alert('Please select card expiry date.');
+        return;
+      }
+      if (!cvv.value.match(/^\d{3}$/)) {
+        alert('Please enter a valid 3-digit CVV.');
+        return;
+      }
+    }
+
+    // Clear cart and show confirmation
+    localStorage.removeItem('cart');
+    alert(`Purchase confirmed!\nThank you, ${fullname}, for shopping with us.`);
+
+    // Redirect back to home page
+    window.location.href = 'website.html';
+  });
+</script>
+
+</body>
+</html>

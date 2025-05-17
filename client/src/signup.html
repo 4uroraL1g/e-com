@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, select {
+      display: block;
+      margin-bottom: 1rem;
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    #toLoginBtn {
+      margin-top: 20px;
+      width: 300px;
+      background-color: black;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <form id="signupForm">
+    <h2>Sign Up</h2>
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+
+    <!-- Security Question mock inputs -->
+    <select id="securityQuestion" aria-label="Select a security question">
+      <option value="" disabled selected>Choose a security question</option>
+      <option value="mother_maiden">What is your mother's maiden name?</option>
+      <option value="first_pet">What was the name of your first pet?</option>
+      <option value="first_school">What was the name of your first school?</option>
+      <option value="favorite_teacher">Who was your favorite teacher?</option>
+      <option value="birth_city">In which city were you born?</option>
+    </select>
+    <input type="text" id="securityAnswer" placeholder="Answer to security question" />
+
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <button id="toLoginBtn">Already have an account? Login here</button>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // Security question & answer are not sent or used
+      // Just for show and user experience
+
+      const res = await fetch("http://localhost:5000/api/user/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: username, email, password, phone: '', isAdmin: false }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Signup successful!");
+        window.location.href = "login.html"; // redirect to login page
+      } else {
+        alert("Signup failed: " + data.message);
+      }
+    });
+
+    document.getElementById("toLoginBtn").addEventListener("click", () => {
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>

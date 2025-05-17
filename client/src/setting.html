@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Settings - E-Shop</title>
+  <link rel="stylesheet" href="website.css" />
+  <link rel="stylesheet" href="darkmode.css" />
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    header {
+      background-color: #007bff;
+      padding: 15px 30px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.3em;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    body.dark-mode header {
+      background-color: #0056b3;
+      color: #cfd8dc;
+    }
+
+    /* Back button */
+    #backBtn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    #backBtn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    main.settings-container {
+      max-width: 700px;
+      margin: 40px auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      padding: 30px 40px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body.dark-mode main.settings-container {
+      background-color: #1f1f1f;
+      color: #cfd8dc;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.7);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-weight: 700;
+      font-size: 2em;
+      letter-spacing: 0.04em;
+      margin-bottom: 25px;
+    }
+
+    section.settings-section {
+      margin-bottom: 35px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 20px;
+    }
+    body.dark-mode section.settings-section {
+      border-color: #444;
+    }
+
+    section.settings-section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    section.settings-section > h2 {
+      font-weight: 600;
+      font-size: 1.3em;
+      margin-bottom: 15px;
+      color: #444;
+    }
+    body.dark-mode section.settings-section > h2 {
+      color: #a0c4c4;
+    }
+
+    /* Form controls */
+
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-weight: 600;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    body.dark-mode label {
+      color: #d0d0d0;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      flex: 1 1 auto;
+      margin-left: 20px;
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1.8px solid #ccc;
+      font-size: 1em;
+      transition: border-color 0.3s ease;
+    }
+    body.dark-mode input[type="text"],
+    body.dark-mode input[type="email"],
+    body.dark-mode select {
+      background-color: #2a2a2a;
+      color: #e0e0e0;
+      border-color: #555;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 6px #007bffaa;
+    }
+    body.dark-mode input[type="text"]:focus,
+    body.dark-mode input[type="email"]:focus,
+    body.dark-mode select:focus {
+      border-color: #80cbc4;
+      box-shadow: 0 0 8px #80cbc4bb;
+    }
+
+    /* Toggle switch */
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+      margin-left: 20px;
+      flex-shrink: 0;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      border-radius: 30px;
+      transition: 0.4s;
+      box-shadow: inset 0 2px 6px #bbb;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.4s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    input:checked + .slider {
+      background-color: #007bff;
+      box-shadow: inset 0 2px 6px #1a73e8;
+    }
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+
+    /* Save button */
+
+    button#saveSettingsBtn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 14px 26px;
+      border-radius: 6px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 20px auto 0 auto;
+      width: 160px;
+      user-select: none;
+    }
+    button#saveSettingsBtn:hover {
+      background-color: #0056b3;
+    }
+    button#saveSettingsBtn:active {
+      background-color: #003d80;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9em;
+      color: #777;
+      user-select: none;
+    }
+    body.dark-mode footer {
+      color: #666;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <button id="backBtn" title="Go back to main page">&#8592; Back</button>
+    <div>E-Shop Settings</div>
+    <div style="width: 70px;"></div> <!-- spacer to keep header balanced -->
+  </header>
+
+  <main class="settings-container">
+    <h1>Settings</h1>
+
+    <form id="settingsForm">
+
+      <section class="settings-section" aria-label="Notifications settings">
+        <h2>Notifications</h2>
+        <label for="emailNotifications">
+          Email Notifications
+          <span class="switch">
+            <input type="checkbox" id="emailNotifications" checked />
+            <span class="slider"></span>
+          </span>
+        </label>
+        <label for="smsNotifications">
+          SMS Notifications
+          <span class="switch">
+            <input type="checkbox" id="smsNotifications" />
+            <span class="slider"></span>
+          </span>
+        </label>
+      </section>
+
+      <section class="settings-section" aria-label="General preferences">
+        <h2>Preferences</h2>
+
+        <label for="languageSelect">
+          Language
+          <select id="languageSelect">
+            <option value="en" selected>English</option>
+            <option value="vi">Vietnamese</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+          </select>
+        </label>
+
+        <label for="themeSelect">
+          Theme
+          <select id="themeSelect">
+            <option value="light" selected>Light (default)</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+
+      </section>
+
+      <section class="settings-section" aria-label="Account info">
+        <h2>Account</h2>
+
+        <label for="shippingAddress">
+          Default Shipping Address
+          <input type="text" id="shippingAddress" placeholder="123 Main St, Hanoi, Vietnam" value="123 Main St, Hanoi, Vietnam" />
+        </label>
+
+        <label for="contactEmail">
+          Contact Email
+          <input type="email" id="contactEmail" placeholder="your.email@example.com" value="user@example.com" />
+        </label>
+      </section>
+
+      <button type="submit" id="saveSettingsBtn">Save Settings</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 E-Shop. All rights reserved.
+  </footer>
+
+  <script>
+    // Back button functionality
+    document.getElementById('backBtn').addEventListener('click', () => {
+      window.location.href = 'website.html'; // main page URL
+    });
+
+    // Theme select toggles dark mode live
+    const themeSelect = document.getElementById('themeSelect');
+    const body = document.body;
+
+    // Initialize theme from saved or default
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        body.classList.add('dark-mode');
+      } else {
+        body.classList.remove('dark-mode');
+      }
+    }
+
+    // On theme change
+    themeSelect.addEventListener('change', () => {
+      const selected = themeSelect.value;
+      applyTheme(selected);
+      // Optionally save to localStorage so persists on reload:
+      localStorage.setItem('theme', selected);
+    });
+
+    // On page load, read saved theme if any
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    themeSelect.value = savedTheme;
+    applyTheme(savedTheme);
+
+    // Fake save action with a little animation
+    const form = document.getElementById('settingsForm');
+    const saveBtn = document.getElementById('saveSettingsBtn');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      saveBtn.textContent = 'Saving...';
+      saveBtn.disabled = true;
+
+      setTimeout(() => {
+        alert('Settings saved! (Note: This is just a demo)');
+        saveBtn.textContent = 'Save Settings';
+        saveBtn.disabled = false;
+      }, 1500);
+    });
+  </script>
+
+  <script src="darkmode.js"></script>
+</body>
+</html>
