@@ -5,16 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tables &amp; desks - E-Shop Clone</title>
 <link rel="stylesheet" href="website.css" />
+<link rel="stylesheet" href="darkmode.css" />
 </head>
 <body>
 <header>
-  <a href="website.html" class="logo">E-Shop</a>
+  <div class="header-left">
+    <a href="website.html" class="logo">E-Shop</a>
+    <a href="website.html" class="home-button">Home</a>
+  </div>
   <div class="search-container">
     <input type="text" placeholder="Search product..." id="searchBox" />
     <button onclick="searchProduct()">Search</button>
   </div>
   <div class="header-right">
 <a href="cart.html" class="cart">🛒 <span id="cartCount">0</span></a>
+<button id="darkModeToggle">Toggle Dark Mode</button>
     <div class="user-menu">
       <div class="user-icon">👤</div>
       <div class="dropdown">
@@ -57,9 +62,14 @@
     const categoryName = "Tables";
     const category = categories.find(cat => cat.name === categoryName);
     const container = document.getElementById("productsContainer");
-    container.innerHTML = "";
-    if (category && category.products.length > 0) {
-      category.products.forEach(product => {
+
+    function renderProducts(products) {
+      container.innerHTML = "";
+      if (products.length === 0) {
+        container.innerHTML = "<p>No products found in this category.</p>";
+        return;
+      }
+      products.forEach(product => {
         const productHTML = `
           <div class="product">
             <img src="${product.img}" alt="${product.name}" />
@@ -73,8 +83,33 @@
         `;
         container.innerHTML += productHTML;
       });
-    } else {
-      container.innerHTML = "<p>No products found in this category.</p>";
+    }
+
+    function searchCategoryProducts() {
+      const query = document.getElementById("searchBox").value.toLowerCase().trim();
+      if (!category) {
+        container.innerHTML = "<p>No products found in this category.</p>";
+        return;
+      }
+      if (!query) {
+        renderProducts(category.products);
+        return;
+      }
+      const filtered = category.products.filter(p => p.name.toLowerCase().includes(query));
+      renderProducts(filtered);
+    }
+
+    // Initial render of all products
+    renderProducts(category.products);
+
+    // Add event listener for search input
+    const searchInput = document.getElementById("searchBox");
+    searchInput.addEventListener("input", searchCategoryProducts);
+
+    // Optional: add event listener for search button
+    const searchButton = searchInput.nextElementSibling;
+    if (searchButton) {
+      searchButton.addEventListener("click", searchCategoryProducts);
     }
   };
 </script>

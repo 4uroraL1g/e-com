@@ -2,9 +2,9 @@ const categories = [
     {
         name: "Beds",
         products: [
-              { id: 1, name: "Twin Bed", price: 1000000, height: "135cm", width: "190cm", depth: "40cm", img: "https://m.media-amazon.com/images/I/81oC4tO8WML.jpg", url: "https://m.media-amazon.com/images/I/81oC4tO8WML.jpg" },
-              { id: 2, name: "Twin XL Beds", price: 1100000, height: "150cm", width: "190cm", depth: "43cm", img: "https://i5.walmartimages.com/seo/LIKIMIO-Twin-XL-Bed-Frames-Outlets-Storage-Upholstered-Headboard-No-Box-Springs-Dark-Gray_fff7a8ab-f6ed-43fc-b7a8-eba9c942c9a2.96a900808c2e15d8fbc5cfda03c5abc2.jpeg", url: "https://i5.walmartimages.com/seo/LIKIMIO-Twin-XL-Bed-Frames-Outlets-Storage-Upholstered-Headboard-No-Box-Springs-Dark-Gray_fff7a8ab-f6ed-43fc-b7a8-eba9c942c9a2.96a900808c2e15d8fbc5cfda03c5abc2.jpeg" },
-              { id: 3, name: "Full Bed / Double Bed", price: 1200000, height: "89cm", width: "190cm", depth: "41cm", img: "https://i.ebayimg.com/images/g/HjcAAOSwb5tj~caA/s-l1200.jpg", url: "https://i.ebayimg.com/images/g/HjcAAOSwb5tj~caA/s-l1200.jpg" },
+              { id: 1, name: "Twin Bed", price: 1100000, height: "135cm", width: "190cm", depth: "40cm", img: "https://m.media-amazon.com/images/I/81oC4tO8WML.jpg", url: "https://m.media-amazon.com/images/I/81oC4tO8WML.jpg" },
+              { id: 2, name: "Twin XL Beds", price: 1700000, height: "150cm", width: "190cm", depth: "43cm", img: "https://i5.walmartimages.com/seo/LIKIMIO-Twin-XL-Bed-Frames-Outlets-Storage-Upholstered-Headboard-No-Box-Springs-Dark-Gray_fff7a8ab-f6ed-43fc-b7a8-eba9c942c9a2.96a900808c2e15d8fbc5cfda03c5abc2.jpeg", url: "https://i5.walmartimages.com/seo/LIKIMIO-Twin-XL-Bed-Frames-Outlets-Storage-Upholstered-Headboard-No-Box-Springs-Dark-Gray_fff7a8ab-f6ed-43fc-b7a8-eba9c942c9a2.96a900808c2e15d8fbc5cfda03c5abc2.jpeg" },
+              { id: 3, name: "Full Bed / Double Bed", price: 1900000, height: "89cm", width: "190cm", depth: "41cm", img: "https://i.ebayimg.com/images/g/HjcAAOSwb5tj~caA/s-l1200.jpg", url: "https://i.ebayimg.com/images/g/HjcAAOSwb5tj~caA/s-l1200.jpg" },
               { id: 4, name: "Queen Bed", price: 1300000, height: "150cm", width: "200cm", depth: "50cm", img: "https://cebu.homemakerfurniture.com/wp-content/uploads/2022/11/Side-scaled.jpg", url: "https://cebu.homemakerfurniture.com/wp-content/uploads/2022/11/Side-scaled.jpg" },
               { id: 5, name: "King Bed", price: 1400000, height: "180cm", width: "200cm", depth: "45cm", img: "https://images-na.ssl-images-amazon.com/images/I/91yKb5+PMiL.jpg", url: "https://images-na.ssl-images-amazon.com/images/I/91yKb5+PMiL.jpg" },
               { id: 6, name: "California King Bed", price: 1500000, height: "200cm", width: "210cm", depth: "60cm", img: "https://m.media-amazon.com/images/I/91jBRB4FyFL.jpg", url: "https://m.media-amazon.com/images/I/91jBRB4FyFL.jpg" },
@@ -22,7 +22,7 @@ const categories = [
               { id: 18, name: "Four-Poster Bed", price: 2700000, height: "132cm", width: "204cm", depth: "48cm", img: "https://www.lakkadhaara.com/cdn/shop/products/Florentina-Poster-Bed-Lakkadhaara-21665884242000.jpg?v=1744016467&width=1445", url: "https://www.lakkadhaara.com/cdn/shop/products/Florentina-Poster-Bed-Lakkadhaara-21665884242000.jpg?v=1744016467&width=1445" },
               { id: 19, name: "Storage Bed", price: 2800000, height: "128cm", width: "193cm", depth: "47cm", img: "https://lofthome.com/cdn/shop/collections/storage-beds.jpg?v=1729409988", url: "https://lofthome.com/cdn/shop/collections/storage-beds.jpg?v=1729409988" },
               { id: 20, name: "Adjustable Bed", price: 2900000, height: "119cm", width: "219cm", depth: "60cm", img: "https://www.brentwoodhome.com/cdn/shop/products/0004_brentwood_base1_image00007_1400x.jpg?v=1636590815", url: "https://www.brentwoodhome.com/cdn/shop/products/0004_brentwood_base1_image00007_1400x.jpg?v=1636590815" },
-              { id: 21, name: "Twin Bed", price: 3000000, height: "128cm", width: "210cm", depth: "59cm", img: "https://m.media-amazon.com/images/I/81VzkftpjOL.jpg", url: "https://m.media-amazon.com/images/I/81VzkftpjOL.jpg" }
+              { id: 21, name: "Sleigh Bed", price: 3000000, height: "128cm", width: "210cm", depth: "59cm", img: "https://libertyfurn-public-assets.s3.us-east-2.amazonaws.com/products/bedroom/575-br/575-br-qsl_large.jpg", url: "https://libertyfurn-public-assets.s3.us-east-2.amazonaws.com/products/bedroom/575-br/575-br-qsl_large.jpg" }
         ]
 },
    {
@@ -413,6 +413,9 @@ window.onload = () => {
     loadFeaturedProducts();
     // loadCategories(); // Removed to prevent clearing product sections
     // searchProduct(); // Removed to prevent clearing product sections
+
+    // Update cart count in header on all pages
+    updateCartCount();
 
     // Define popular products to exclude from submenu
     const popularProductNames = ["Iphone 15 pro max", "ps5", "neoprene dumbbell", "kalpen vacuum cleaner", "JBL quantum 800"];

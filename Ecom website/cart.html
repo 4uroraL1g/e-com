@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Giỏ hàng - E-Shop</title>
 <link rel="stylesheet" href="website.css" />
+<link rel="stylesheet" href="darkmode.css" />
 <style>
   .cart-container {
     max-width: 900px;
@@ -47,23 +48,39 @@
   .back-link:hover {
     text-decoration: underline;
   }
+  .delete-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .delete-btn:hover {
+    background-color: #cc0000;
+  }
 </style>
 </head>
 <body>
 <header>
   <div class="logo">E-Shop</div>
-  
 </header>
 
 <div class="cart-container">
-<h1>Your Shopping Cart</h1>
-<div id="cartItemsContainer"></div>
-<div class="cart-total" id="cartTotal"></div>
-<button id="buyButton" style="margin-top: 10px; padding: 10px 20px; font-size: 1em; float: right;">Buy</button>
-<a href="website.html" class="back-link">← Back to Home</a>
+  <h1>Your Shopping Cart</h1>
+  <div id="cartItemsContainer"></div>
+  <div class="cart-total" id="cartTotal"></div>
+  <button id="buyButton" style="margin-top: 10px; padding: 10px 20px; font-size: 1em; float: right;">Buy</button>
+  <a href="website.html" class="back-link" id="backToHomeLink">← Back to Home</a>
 </div>
 
 <script>
+  document.getElementById('backToHomeLink').addEventListener('click', function(event) {
+    // Keep cart items and cart count consistent on home page when clicking back to home
+    // No action needed here to clear or modify cart
+  });
+
   function loadCart() {
     const cartItemsContainer = document.getElementById('cartItemsContainer');
     const cartTotalElem = document.getElementById('cartTotal');
@@ -80,7 +97,7 @@
     }
 
     let total = 0;
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
       total += item.price;
       const itemElem = document.createElement('div');
       itemElem.className = 'cart-item';
@@ -90,11 +107,39 @@
           <div class="cart-item-name">${item.name}</div>
           <div class="cart-item-price">${item.price.toLocaleString()} VND</div>
         </div>
+        <button class="delete-btn" data-index="${index}">Delete</button>
       `;
       cartItemsContainer.appendChild(itemElem);
     });
 
-    cartTotalElem.textContent = 'Tổng cộng: ' + total.toLocaleString() + ' VND';
+    cartTotalElem.textContent = 'Total: ' + total.toLocaleString() + ' VND';
+
+    // Add event listeners for delete buttons
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const idx = this.getAttribute('data-index');
+        deleteCartItem(parseInt(idx));
+      });
+    });
+  }
+
+  function deleteCartItem(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (index >= 0 && index < cart.length) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      loadCart();
+    }
+  }
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCountElem = document.getElementById('cartCount');
+    if (cartCountElem) {
+      cartCountElem.textContent = cart.length;
+    }
   }
 
   document.getElementById('buyButton').addEventListener('click', () => {
@@ -105,12 +150,16 @@
     }
     alert('Thank you for your purchase! Your total order amount is: ' + cart.reduce((sum, item) => sum + item.price, 0).toLocaleString() + ' VND');
     localStorage.removeItem('cart');
+    updateCartCount();
     loadCart();
     // Optionally, redirect to homepage or order confirmation page
     // window.location.href = 'website.html';
   });
 
-  document.addEventListener('DOMContentLoaded', loadCart);
+  document.addEventListener('DOMContentLoaded', () => {
+    loadCart();
+    updateCartCount();
+  });
 </script>
 </body>
 </html>

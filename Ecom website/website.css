@@ -258,3 +258,107 @@ footer {
     background: rgba(255,255,255,0.3);
     border-radius: 2px;
 }
+/* Style for E-Shop logo on category pages */
+.logo {
+  color: white !important;
+  text-decoration: none !important;
+  font-weight: bold;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+/* Style for Home button next to logo */
+.home-button {
+  color: white;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 1em;
+  margin-right: 20px;
+  padding: 6px 12px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: white;
+  color: #333;
+}
+
+.logo {
+  color: white !important;
+  text-decoration: none !important;
+  font-weight: bold;
+  font-size: 24px;
+  margin-right: 8px; /* small gap */
+}
+
+.home-button {
+  color: white;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 1em;
+  margin-right: 20px;
+  padding: 6px 12px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  vertical-align: middle;
+}
+
+.home-button:hover {
+  background-color: white;
+  color: #333;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #ff5722;
+    color: white;
+    flex-wrap: wrap;
+}
+
+/* Container for logo and home button to align horizontally */
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Style for E-Shop logo on category pages */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white !important;
+    text-decoration: none !important;
+    margin-right: 8px; /* small gap */
+}
+
+/* Style for Home button next to logo */
+.home-button {
+    color: white;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 1em;
+    margin-left: 0;
+    padding: 6px 12px;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    vertical-align: middle;
+}
+
+.home-button:hover {
+    background-color: white;
+    color: #333;
+}
+
+
+

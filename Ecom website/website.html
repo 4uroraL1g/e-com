@@ -5,17 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Shop Clone</title>
 <link rel="stylesheet" href="website.css">
+<link rel="stylesheet" href="darkmode.css" />
 </head>
 <body>
 <header>
-  <div class="logo">E-Shop</div>
-<div class="search-container">
+  <a href="website.html" class="logo">E-Shop</a>
+  <div class="search-container">
     <input type="text" placeholder="Search product..." id="searchBox">
     <button onclick="searchProduct()">Search</button>
 </div>
 
 <div class="header-right">
 <a href="cart.html" class="cart">🛒 <span id="cartCount">0</span></a>
+      <button id="darkModeToggle">Toggle Dark Mode</button>
 <div class="user-menu">
 <div class="user-icon">👤</div>
 <div class="dropdown">
@@ -65,6 +67,11 @@
     loadFeaturedProducts();
     loadPopularProducts();
     loadNewProducts();
+  });
+</script>
+<script>
+  document.getElementById('searchBox').addEventListener('input', function() {
+    searchProduct();
   });
 </script>
 </body>
