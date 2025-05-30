@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="{{ url_for('static', filename='chatbot.js') }}" defer></script>
+</head>
+
+<body class="show-chatbox">
+    <div class="chatbot">
+        <!-- <header>
+            <h3>Chatbot Assistant</h3>
+            <h3 class="logo">AI Assistant</h3>
+        </header> -->
+        <div class="chat-header">
+            <a href="#" class="logo">Chatbot Assistant</a>
+            <a href="{{ url_for('home') }}" class="logo">Back to home</a>
+        </div>
+
+
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <p>Hi there! How can I help you today?</p>
+            </li>
+        </ul>
+
+        <div class="chat-input">
+            <textarea placeholder="Enter your question..." required></textarea>
+            <span id="send-btn" class="material-symbols-outlined">send</span>
+        </div>
+    </div>
+</body>
+
+</html>

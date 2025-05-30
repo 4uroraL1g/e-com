@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cart - E-Shop</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='website.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='darkmode.css') }}" />
+  <style>
+    .cart-container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    .cart-item img {
+      width: 100px;
+      height: auto;
+      margin-right: 20px;
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+    }
+
+    .cart-item-name {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+      color: #555;
+    }
+
+    .cart-total {
+      text-align: right;
+      font-size: 1.4em;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-left">
+      <a class="logo">E-Shop</a>
+      <!-- <a href="{{ url_for('home') }}" class="home-button">Home</a> -->
+    </div>
+    <button id="darkModeToggle">Toggle Dark Mode</button>
+  </header>
+
+  <div class="cart-container">
+    <h1>Your Shopping Cart</h1>
+    <div id="cartItemsContainer"></div>
+    <div class="cart-total" id="cartTotal"></div>
+    <button id="buyButton" style="margin-top: 10px; padding: 10px 20px; font-size: 1em; float: right;">Ready to check out</button>
+    <a href="{{ url_for('home') }}" class="back-link">← Back to Home</a>
+  </div>
+
+  <script>
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   loadCart();
+    // });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log("Clicked")
+      loadCart();
+
+      const buyButton = document.getElementById('buyButton');
+      buyButton.addEventListener('click', () => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart.length === 0) {
+          alert('Cart is empty!');
+          return;
+        }
+
+        const total = cart.reduce((sum, item) => sum + item.price, 0).toLocaleString();
+        alert('Thank you for your purchase! Your total order amount is: ' + total + ' VND');
+
+        localStorage.removeItem('cart');
+        loadCart();
+
+        window.location.href = "{{ url_for('checkout') }}";
+      });
+    });
+
+    document.getElementById("toLoginBtn").addEventListener("click", () => {
+      window.location.href = "{{ url_for('login') }}";
+    });
+
+    function loadCart() {
+      const cartItemsContainer = document.getElementById('cartItemsContainer');
+      const cartTotalElem = document.getElementById('cartTotal');
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cartItemsContainer.innerHTML = '';
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p>Cart is empty!</p>';
+        cartTotalElem.textContent = '';
+        document.getElementById('buyButton').style.display = 'none';
+        return;
+      } else {
+        document.getElementById('buyButton').style.display = 'inline-block';
+      }
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        const itemElem = document.createElement('div');
+        itemElem.className = 'cart-item';
+        itemElem.innerHTML = `
+          <img src="${item.img}" alt="${item.name}" />
+          <div class="cart-item-details">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">${item.price.toLocaleString()} VND</div>
+          </div>
+          <button class="delete-btn" data-index="${index}">Delete</button>
+        `;
+        cartItemsContainer.appendChild(itemElem);
+      });
+
+      cartTotalElem.textContent = 'Total: ' + total.toLocaleString() + ' VND';
+
+      // Add event listeners for delete buttons
+      const deleteButtons = document.querySelectorAll('.delete-btn');
+      deleteButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const idx = this.getAttribute('data-index');
+          deleteCartItem(parseInt(idx));
+        });
+      });
+    }
+
+    function deleteCartItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (index >= 0 && index < cart.length) {
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        loadCart();
+      }
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartCountElem = document.getElementById('cartCount');
+      if (cartCountElem) {
+        cartCountElem.textContent = cart.length;
+      }
+    }
+
+    // document.getElementById('buyButton').addEventListener('click', () => {
+    //   console.log("Clicked")
+    //   const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    //   if (cart.length === 0) {
+    //     alert('Cart is empty!');
+    //     return;
+    //   }
+    //   alert('Thank you for your purchase! Your total order amount is: ' + cart.reduce((sum, item) => sum + item.price, 0).toLocaleString() + ' VND');
+    //   localStorage.removeItem('cart');
+    //   updateCartCount();
+    //   loadCart();
+    // });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadCart();
+      updateCartCount();
+    });
+  </script>
+  <script src="{{ url_for('static', filename='darkmode.js') }}"></script>
+</body>
+
+</html>
