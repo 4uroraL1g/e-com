@@ -26,10 +26,10 @@ model_path = "./chat-model-final"
 
 model = AutoPeftModelForCausalLM.from_pretrained(
     model_path,
-    device_map="cpu",  # hoặc .to("cpu")
+    device_map=device,
     trust_remote_code=True
 )
-model.to("cpu")
+model.to(device)
 
 tokenizer = AutoTokenizer.from_pretrained(
     model_path, 
@@ -99,68 +99,6 @@ def checkout():
 @app.route("/forgot-password")
 def forgotPassword():
     return render_template("forgot-password.html")
-# @app.route("/chat", methods=["POST"])
-# def chat():
-#     data = request.json
-#     print("Received JSON:", data)
-#     user_input = data.get("question", "")
-#     print("User input:", user_input)
-
-#     prompt = f"<|user|>\n{user_input}\n<|assistant|>\n"
-#     inputs = tokenizer(prompt, return_tensors="pt").to(device)
-
-#     outputs = model.generate(
-#         **inputs,
-#         max_new_tokens=60,
-#         do_sample=False,
-#         eos_token_id=tokenizer.eos_token_id,
-#         pad_token_id=tokenizer.pad_token_id
-#     )
-
-#     decoded = tokenizer.decode(outputs[0], skip_special_tokens=True)
-
-#     if "<|assistant|>\n" in decoded:
-#         answer = decoded.split("<|assistant|>\n")[1].strip().split("\n")[0]
-#     else:
-#         answer = decoded.strip()
-
-#     return jsonify({"answer": answer})
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
-# # Đặt chế độ eval
-# model.eval()
-
-# @app.route("/", methods=["GET", "POST"])
-# def chat():
-#     response = ""
-#     if request.method == "POST":
-#         user_input = request.form.get("message", "")
-#         try:
-#             # Định dạng prompt theo kiểu chat của Qwen
-#             messages = [
-#                 {"role": "user", "content": user_input}
-#             ]
-
-#             input_ids = tokenizer.apply_chat_template(messages, return_tensors="pt").to(model.device)
-#             output_ids = model.generate(
-#                 input_ids=input_ids,
-#                 max_new_tokens=200,
-#                 do_sample=True,
-#                 temperature=0.7,
-#                 top_p=0.95
-#             )
-
-#             response = tokenizer.decode(output_ids[0][input_ids.shape[1]:], skip_special_tokens=True)
-
-#         except Exception as e:
-#             response = f"Error: {str(e)}"
-
-#     return render_template("chatbox.html", response=response)
-
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0", port=5050, debug=True)
 
 def format_chat(messages):
     prompt = ""
@@ -183,7 +121,6 @@ def chat():
             user_input = data.get("question", "")
             # print("User input:", user_input)
 
-            # Giả lập một đoạn hội thoại (nếu chưa lưu được history)
             messages = [
                 {"role": "user", "content": user_input}
             ]
